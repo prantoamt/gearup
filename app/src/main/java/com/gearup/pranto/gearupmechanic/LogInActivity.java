@@ -1,6 +1,7 @@
 package com.gearup.pranto.gearupmechanic;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +26,9 @@ import java.util.Map;
 public class LogInActivity extends AppCompatActivity {
 
     EditText user_name, password;
-    Button log_in, sign_up;
-    CheckBox accept;
+    Button log_in;
+    boolean logged_in;
+    TextInputLayout t_user_name, t_pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +43,8 @@ public class LogInActivity extends AppCompatActivity {
         user_name = (EditText) findViewById(R.id.user_name);
         password = (EditText) findViewById(R.id.pass);
         log_in = (Button) findViewById(R.id.log_in);
-        accept = (CheckBox) findViewById(R.id.accept);
-        sign_up = (Button) findViewById(R.id.sign_up);
-
-        sign_up.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LogInActivity.this, SingupActivity.class);
-                startActivity(i);
-            }
-        });
+        t_user_name = (TextInputLayout) findViewById(R.id.textinputusername);
+        t_pass = (TextInputLayout) findViewById(R.id.textinputpass);
 
         log_in.setOnClickListener(
                 new View.OnClickListener() {
@@ -67,14 +61,26 @@ public class LogInActivity extends AppCompatActivity {
          final String username = user_name.getText().toString();
          final String pass = password.getText().toString();
 
-        String url = "localhost/login.php";
+        String url = "http://192.168.0.118/login.php";
 
 
         StringRequest rq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                if (checkUser() && checkPassword())
+                {
+                    if(response.toString().equals("valid"))
+                    {
+                        logged_in = true;
+                        makeToast("Welcome!");
+                    }
+                    else
+                    {
+                        makeToast("Invalid User name or Password.");
+                    }
                 }
+
+            }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -86,8 +92,6 @@ public class LogInActivity extends AppCompatActivity {
                 Map<String, String>  parr = new HashMap<String, String>();
                 parr.put("user_name", username);
                 parr.put("password", pass);
-
-
                 return parr;
             }
         };
@@ -95,4 +99,50 @@ public class LogInActivity extends AppCompatActivity {
         AppController.getInstance(getApplicationContext()).addToRequestQueue(rq);
 
     }
+
+    public void goRegister(View view)
+    {
+        Intent i = new Intent(LogInActivity.this, SingupActivity.class);
+        startActivity(i);
+    }
+
+    private boolean checkUser()
+    {
+        boolean is_valid = false;
+        if(user_name.getText().toString().isEmpty())
+        {
+            t_user_name.setError("Please enter your user name");
+            is_valid = false;
+        }
+        else
+        {
+            t_user_name.setErrorEnabled(false);
+            is_valid = true;
+        }
+
+        return is_valid;
+    }
+
+    private boolean checkPassword()
+    {
+        boolean is_valid = false;
+        if(password.getText().toString().isEmpty())
+        {
+            t_pass.setError("Please enter your password");
+            is_valid = false;
+        }
+        else
+        {
+            t_pass.setErrorEnabled(false);
+            is_valid = true;
+        }
+
+        return is_valid;
+    }
+
+    private void makeToast(String string)
+    {
+        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
+    }
+
 }
