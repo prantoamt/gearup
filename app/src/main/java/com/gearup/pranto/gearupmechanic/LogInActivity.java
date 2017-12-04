@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +30,7 @@ public class LogInActivity extends AppCompatActivity {
     Button log_in;
     boolean logged_in;
     TextInputLayout t_user_name, t_pass;
+    MyMechanic mechanic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +71,32 @@ public class LogInActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 if (checkUser() && checkPassword())
                 {
-                    if(response.toString().equals("valid"))
-                    {
-                        logged_in = true;
-                        makeToast("Welcome!");
-                    }
-                    else
-                    {
-                        makeToast("Invalid User name or Password.");
+                    try {
+                        JSONArray array = new JSONArray(response);
+                        JSONObject object = null;
+                        if(array != null)
+                        {
+                            object = array.getJSONObject(0);
+
+                            mechanic = new MyMechanic();
+                            mechanic.name = object.getString("name");
+                            mechanic.user_name = object.getString("user_name");
+                            mechanic.password = object.getString("pass");
+                            mechanic.email = object.getString("email");
+                            mechanic.phone = object.getString("phone");
+                            mechanic.acc_type = object.getString("acc_type");
+                            makeToast("Welcome..");
+                            Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
+                            Bundle b = new Bundle();
+                            b.putSerializable("mechanic", mechanic);
+                            intent.putExtras(b);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                    } catch (JSONException e) {
+                        makeToast("Invalid user name or password");
+                        e.printStackTrace();
                     }
                 }
 
@@ -84,6 +104,7 @@ public class LogInActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                makeToast(error.toString());
 
             }
         }) {

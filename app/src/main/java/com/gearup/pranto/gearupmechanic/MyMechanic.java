@@ -1,27 +1,28 @@
 package com.gearup.pranto.gearupmechanic;
 
+import java.io.Serializable;
+
 /**
  * Created by pranto on 12/1/17.
  */
 
-public class MyMechanic {
+public class MyMechanic implements Serializable{
 
-    String name, user_name, password, email, phone, address, category;
+    String name, user_name, password, email, phone, acc_type;
 
     public MyMechanic()
     {
 
     }
 
-    public MyMechanic( String name, String user_name, String password,String email, String phone, String address, String category)
+    public MyMechanic( String name, String user_name, String password,String email, String phone, String category)
     {
         this.name = name;
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.address = address;
-        this.category = category;
+        this.acc_type = category;
     }
 
     public String getName() {
@@ -64,19 +65,11 @@ public class MyMechanic {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAcc_type() {
+        return acc_type;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setAcc_type(String category) {
+        this.acc_type = category;
     }
 }

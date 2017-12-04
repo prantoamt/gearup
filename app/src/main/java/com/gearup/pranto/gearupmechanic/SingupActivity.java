@@ -86,15 +86,19 @@ public class SingupActivity extends AppCompatActivity {
                     if(response.toString().equals("Registration Successful"))
                     {
                         progress_dialog.dismiss();
-                        Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
+                        makeToast(response.toString());
                         finish();
+                    }
+                    else
+                    {
+                        makeToast(response.toString());
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     progress_dialog.dismiss();
-                    Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    makeToast(error.toString());
                 }
             }){
                 protected Map<String, String> getParams()
