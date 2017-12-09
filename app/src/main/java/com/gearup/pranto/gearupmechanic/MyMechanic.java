@@ -8,21 +8,25 @@ import java.io.Serializable;
 
 public class MyMechanic implements Serializable{
 
-    String name, user_name, password, email, phone, acc_type;
+    String name;
+    String password;
+    String email;
+    String phone;
+    String service;
+    String rating;
 
     public MyMechanic()
     {
 
     }
 
-    public MyMechanic( String name, String user_name, String password,String email, String phone, String category)
+    public MyMechanic( String name, String password,String email, String phone, String category)
     {
         this.name = name;
-        this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.acc_type = category;
+        this.service = category;
     }
 
     public String getName() {
@@ -31,14 +35,6 @@ public class MyMechanic implements Serializable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
     }
 
     public String getPassword() {
@@ -65,11 +61,20 @@ public class MyMechanic implements Serializable{
         this.phone = phone;
     }
 
-    public String getAcc_type() {
-        return acc_type;
+    public String getService() {
+        return service;
     }
 
-    public void setAcc_type(String category) {
-        this.acc_type = category;
+    public void setService(String category) {
+        this.service = category;
     }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
 }

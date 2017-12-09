@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_new_account"
-        android:title="My Account"/>
+    <item android:id="@+id/nav_my_account"
+        android:title="My Account"
+        android:icon="@mipmap/ic_account_circle_black_24dp"/>
 
-    <item android:id="@+id/nav_setting"
-        android:title="Settings"/>
+    <item android:id="@+id/nv_edit"
+        android:title="Edit Profile"
+        android:icon="@mipmap/ic_supervisor_account_black_24dp"/>
 
     <item android:id="@+id/nav_logout"
+        android:icon="@mipmap/ic_power_settings_new_black_24dp"
         android:title="Log Out"/>
 
 

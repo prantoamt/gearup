@@ -1,5 +1,6 @@
 package com.gearup.pranto.gearupmechanic;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,11 +28,12 @@ import java.util.Map;
 
 public class LogInActivity extends AppCompatActivity {
 
-    EditText user_name, password;
+    EditText phone, password;
     Button log_in;
     boolean logged_in;
-    TextInputLayout t_user_name, t_pass;
+    TextInputLayout t_phone, t_pass;
     MyMechanic mechanic;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +45,11 @@ public class LogInActivity extends AppCompatActivity {
 
     private void getContent()
     {
-        user_name = (EditText) findViewById(R.id.user_name);
+        pd = new ProgressDialog(LogInActivity.this);
+        phone = (EditText) findViewById(R.id.phone);
         password = (EditText) findViewById(R.id.pass);
         log_in = (Button) findViewById(R.id.log_in);
-        t_user_name = (TextInputLayout) findViewById(R.id.textinputusername);
+        t_phone = (TextInputLayout) findViewById(R.id.textinputphone);
         t_pass = (TextInputLayout) findViewById(R.id.textinputpass);
 
         log_in.setOnClickListener(
@@ -60,8 +64,9 @@ public class LogInActivity extends AppCompatActivity {
 
     private void onLogIn()
     {
-         final String username = user_name.getText().toString();
-         final String pass = password.getText().toString();
+        showPD();
+        final String phone_no = phone.getText().toString();
+        final String pass = password.getText().toString();
 
         String url = "http://192.168.0.118/login.php";
 
@@ -69,7 +74,8 @@ public class LogInActivity extends AppCompatActivity {
         StringRequest rq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (checkUser() && checkPassword())
+                dismissPD();
+                if (checkPhone() && checkPassword())
                 {
                     try {
                         JSONArray array = new JSONArray(response);
@@ -79,12 +85,11 @@ public class LogInActivity extends AppCompatActivity {
                             object = array.getJSONObject(0);
 
                             mechanic = new MyMechanic();
-                            mechanic.name = object.getString("name");
-                            mechanic.user_name = object.getString("user_name");
-                            mechanic.password = object.getString("pass");
-                            mechanic.email = object.getString("email");
-                            mechanic.phone = object.getString("phone");
-                            mechanic.acc_type = object.getString("acc_type");
+                            mechanic.name = object.getString("m_full_name");
+                            mechanic.password = object.getString("m_pass");
+                            mechanic.email = object.getString("m_email");
+                            mechanic.phone = object.getString("m_phone");
+                            mechanic.service = object.getString("m_service");
                             makeToast("Welcome..");
                             Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
                             Bundle b = new Bundle();
@@ -95,6 +100,7 @@ public class LogInActivity extends AppCompatActivity {
 
                         }
                     } catch (JSONException e) {
+                        dismissPD();
                         makeToast("Invalid user name or password");
                         e.printStackTrace();
                     }
@@ -104,6 +110,7 @@ public class LogInActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                dismissPD();
                 makeToast(error.toString());
 
             }
@@ -111,7 +118,7 @@ public class LogInActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  parr = new HashMap<String, String>();
-                parr.put("user_name", username);
+                parr.put("phone", phone_no);
                 parr.put("password", pass);
                 return parr;
             }
@@ -127,17 +134,18 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private boolean checkUser()
+    private boolean checkPhone()
     {
         boolean is_valid = false;
-        if(user_name.getText().toString().isEmpty())
+        if(phone.getText().toString().isEmpty())
         {
-            t_user_name.setError("Please enter your user name");
+            dismissPD();
+            t_phone.setError("Please enter your Phone No");
             is_valid = false;
         }
         else
         {
-            t_user_name.setErrorEnabled(false);
+            t_phone.setErrorEnabled(false);
             is_valid = true;
         }
 
@@ -164,6 +172,22 @@ public class LogInActivity extends AppCompatActivity {
     private void makeToast(String string)
     {
         Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
+    }
+
+    private void showPD()
+    {
+        pd.setMessage("Checking user info");
+        pd.setTitle("Logging in");
+        pd.setCancelable(false);
+        pd.show();
+    }
+
+    private void dismissPD()
+    {
+        if(pd.isShowing())
+        {
+            pd.dismiss();
+        }
     }
 
 }

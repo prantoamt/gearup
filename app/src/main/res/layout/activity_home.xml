@@ -16,29 +16,38 @@
         <TextView
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="welcome"
+            android:textStyle="bold"
+            android:padding="50dp"/>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="40dp"
             android:gravity="center">
-        <ImageButton
+        <Button
             android:padding="10dp"
             android:id="@+id/online"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/button_online" />
-        <ImageButton
+            android:text="Online" />
+        <Button
             android:padding="10dp"
             android:id="@+id/ofline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/button_ofline"/>
+            android:text="Ofline"/>
         </LinearLayout>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/navview"
+        app:headerLayout="@layout/nav_header"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

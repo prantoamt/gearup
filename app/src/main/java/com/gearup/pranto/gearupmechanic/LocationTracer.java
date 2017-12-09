@@ -35,7 +35,7 @@ public class LocationTracer extends Service {
 
     LocationManager my_manager;
     LocationListener my_listener;
-    String user_name;
+    String phone;
     String url = "http://192.168.0.118/registerlocation.php";
 
     @SuppressLint("MissingPermission")
@@ -93,7 +93,7 @@ public class LocationTracer extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        user_name = intent.getStringExtra("user_name");
+        phone = intent.getStringExtra("phone");
         return START_STICKY;
     }
 
@@ -120,7 +120,7 @@ public class LocationTracer extends Service {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> parr = new HashMap<String, String>();
-                parr.put("user_name", user_name);
+                parr.put("phone", phone);
                 parr.put("lat", latt);
                 parr.put("lon",lonn);
                 return parr;
