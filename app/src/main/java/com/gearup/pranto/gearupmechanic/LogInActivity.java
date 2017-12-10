@@ -171,13 +171,13 @@ public class LogInActivity extends AppCompatActivity {
 
     private void makeToast(String string)
     {
-        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT).show();
     }
 
     private void showPD()
     {
+        pd.setTitle("Log in");
         pd.setMessage("Checking user info");
-        pd.setTitle("Logging in");
         pd.setCancelable(false);
         pd.show();
     }

@@ -4,46 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gearup.pranto.gearupmechanic.HomeActivity"
-    android:id="@+id/drawerlayout">
-
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:id="@+id/drawerlayout"
+    tools:context="com.gearup.pranto.gearupmechanic.HomeActivity">
 
-        <TextView
-            android:id="@+id/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="welcome"
-            android:textStyle="bold"
-            android:padding="50dp"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="40dp"
-            android:gravity="center">
-        <Button
-            android:padding="10dp"
-            android:id="@+id/online"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Online" />
-        <Button
-            android:padding="10dp"
-            android:id="@+id/ofline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ofline"/>
-        </LinearLayout>
-    </LinearLayout>
+    </android.support.v4.view.ViewPager>
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navview"
