@@ -26,10 +26,7 @@
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".SingupActivity" />
-
         <service android:name=".LocationTracer" />
-
-        <activity android:name=".ProfileActivity" />
     </application>
 
 </manifest>

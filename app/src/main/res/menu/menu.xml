@@ -8,8 +8,8 @@
         android:title="My Account"
         android:icon="@mipmap/ic_account_circle_black_24dp"/>
 
-    <item android:id="@+id/nv_edit"
-        android:title="Edit Profile"
+    <item android:id="@+id/nav_change_pass"
+        android:title="Change Password"
         android:icon="@mipmap/ic_supervisor_account_black_24dp"/>
 
     <item android:id="@+id/nav_logout"

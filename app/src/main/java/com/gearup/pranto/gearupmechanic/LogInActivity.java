@@ -68,7 +68,7 @@ public class LogInActivity extends AppCompatActivity {
         final String phone_no = phone.getText().toString();
         final String pass = password.getText().toString();
 
-        String url = "http://192.168.0.118/login.php";
+        String url = "http://192.168.0.118/query.php";
 
 
         StringRequest rq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -120,6 +120,7 @@ public class LogInActivity extends AppCompatActivity {
                 Map<String, String>  parr = new HashMap<String, String>();
                 parr.put("phone", phone_no);
                 parr.put("password", pass);
+                parr.put("method", "login");
                 return parr;
             }
         };

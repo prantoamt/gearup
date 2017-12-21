@@ -56,8 +56,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         Fragment f = new HomeFragment();
         Fragment f2 = new MyAccountFragment();
+        Fragment f3 = new ChangePasswordFragment();
         adapter.addFragment(f, "Home fragment");
         adapter.addFragment(f2, "My account fragment");
+        adapter.addFragment(f3, "Change password fragment");
         viewPager.setAdapter(adapter);
     }
 
@@ -130,6 +132,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (item.getItemId() == R.id.nav_my_account)
         {
             vp.setCurrentItem(1);
+        }
+
+        if(item.getItemId() == R.id.nav_change_pass)
+        {
+            vp.setCurrentItem(2);
         }
 
         if(item.getItemId() == R.id.nav_logout)
