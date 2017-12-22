@@ -30,7 +30,7 @@ public class LogInActivity extends AppCompatActivity {
 
     EditText phone, password;
     Button log_in;
-    boolean logged_in;
+    UserSessionManager session;
     TextInputLayout t_phone, t_pass;
     MyMechanic mechanic;
     ProgressDialog pd;
@@ -45,6 +45,7 @@ public class LogInActivity extends AppCompatActivity {
 
     private void getContent()
     {
+        session = new UserSessionManager(getApplicationContext());
         pd = new ProgressDialog(LogInActivity.this);
         phone = (EditText) findViewById(R.id.phone);
         password = (EditText) findViewById(R.id.pass);
@@ -84,18 +85,16 @@ public class LogInActivity extends AppCompatActivity {
                         {
                             object = array.getJSONObject(0);
 
-                            mechanic = new MyMechanic();
-                            mechanic.name = object.getString("m_full_name");
-                            mechanic.password = object.getString("m_pass");
-                            mechanic.email = object.getString("m_email");
-                            mechanic.phone = object.getString("m_phone");
-                            mechanic.service = object.getString("m_service");
-                            makeToast("Welcome..");
-                            Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
-                            Bundle b = new Bundle();
-                            b.putSerializable("mechanic", mechanic);
-                            intent.putExtras(b);
-                            startActivity(intent);
+                            String name = object.getString("m_full_name");
+                            String password = object.getString("m_pass");
+                            String email = object.getString("m_email");
+                            String phone = object.getString("m_phone");
+                            String service = object.getString("m_service");
+                            session.createUserSession(name, phone, pass, email, service, "4");
+                            Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
                             finish();
 
                         }
@@ -104,6 +103,7 @@ public class LogInActivity extends AppCompatActivity {
                         makeToast("Invalid user name or password");
                         e.printStackTrace();
                     }
+
                 }
 
             }
