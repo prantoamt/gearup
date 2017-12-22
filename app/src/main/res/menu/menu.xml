@@ -12,6 +12,11 @@
         android:title="Change Password"
         android:icon="@mipmap/ic_supervisor_account_black_24dp"/>
 
+    <item android:id="@+id/nav_share"
+        android:icon="@mipmap/ic_share_black_24dp"
+        android:title="Share"
+        />
+
     <item android:id="@+id/nav_logout"
         android:icon="@mipmap/ic_power_settings_new_black_24dp"
         android:title="Log Out"/>

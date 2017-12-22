@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
         online = (Button) view.findViewById(R.id.online);
         ofline = (Button) view.findViewById(R.id.ofline);
         welcome.setText("Welcome " + ((HomeActivity)getActivity()).mechanic.getName() +
-                "\nYou are now in the Home page of Gear Up Mechanic. " +
+                "\nYou are now on the Home page of Gear Up Mechanic. " +
                 "To start getting job requests from clients, press the Online " +
                 "button below.\"");
         online.setOnClickListener(new View.OnClickListener() {

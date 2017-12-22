@@ -2,17 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="140dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/login_gradient"
     android:gravity="center_vertical"
     android:orientation="vertical"
     >
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gear Up Mechanic"
-        android:textColor="@color/white"
-        android:gravity="center_horizontal"
-        android:textSize="20dp"/>
+        android:src="@drawable/grear_up_logo"/>
 
 </LinearLayout>

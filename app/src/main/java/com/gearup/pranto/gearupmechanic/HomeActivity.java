@@ -2,7 +2,9 @@ package com.gearup.pranto.gearupmechanic;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -29,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +43,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     SectionsStatePagerAdapter adapter;
     ViewPager vp;
     UserSessionManager user_session;
-    String name= "no name";
+    Intent share_intent;
+    String share_body= "Thanks for sharing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,6 +179,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if(item.getItemId() == R.id.nav_change_pass)
         {
             vp.setCurrentItem(2);
+        }
+
+        if(item.getItemId() == R.id.nav_share)
+        {
+            ApplicationInfo api = getApplicationContext().getApplicationInfo();
+            String apk_path = api.sourceDir;
+            share_intent = new Intent(Intent.ACTION_SEND);
+            share_intent.setType("application/vnd.android.package-archive");
+            share_intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(apk_path)));
+            startActivity(Intent.createChooser(share_intent, "Share Using"));
         }
 
         if(item.getItemId() == R.id.nav_logout)

@@ -20,7 +20,8 @@
             android:textColor="@color/colorPrimaryDark"
             android:text="welcome"
             android:textStyle="bold"
-            android:padding="50dp"/>
+            android:padding="50dp"
+            android:textSize="15dp"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -33,13 +34,25 @@
                 android:id="@+id/online"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Online" />
+                android:text="Online"
+                android:textAllCaps="true"
+                android:textSize="15dp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/login_button"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@mipmap/ic_location_on_black_24dp"/>
             <Button
                 android:padding="10dp"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/ofline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ofline"/>
+                android:drawablePadding="5dp"
+                android:drawableLeft="@mipmap/ic_location_off_black_24dp"
+                android:background="@drawable/signup_button"
+                android:text="Ofline"
+                android:textSize="15dp"
+                android:textAllCaps="true"/>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
