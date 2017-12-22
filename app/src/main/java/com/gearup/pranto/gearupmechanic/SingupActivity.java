@@ -73,7 +73,7 @@ public class SingupActivity extends AppCompatActivity {
         final String my_email = email.getText().toString();
         final String my_phone = phone.getText().toString();
         final String my_ser = service.toString();
-        String url = "http://192.168.0.118/signup.php";
+        String url = Links.SIGNUP_URL;
         if (checkName(my_name) && checkPassword(my_pass) && checkEmail(my_email) && checkPhone(my_phone))
         {
             StringRequest rq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

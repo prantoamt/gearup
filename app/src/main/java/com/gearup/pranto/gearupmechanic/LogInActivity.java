@@ -69,7 +69,7 @@ public class LogInActivity extends AppCompatActivity {
         final String phone_no = phone.getText().toString();
         final String pass = password.getText().toString();
 
-        String url = "http://192.168.0.118/query.php";
+        String url = Links.QUERY_URL;
 
 
         StringRequest rq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
