@@ -119,7 +119,7 @@ public class ChangePasswordFragment extends Fragment {
             not_used_before = false;
             t_new_pass.setError("This password is currently in use");
         }
-        else if(new_pass_string == null || new_pass_string == "")
+        else if(new_pass_string.isEmpty())
         {
             not_used_before = false;
             t_new_pass.setError("New password can't be empty");
