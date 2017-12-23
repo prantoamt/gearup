@@ -36,14 +36,13 @@ public class LocationTracer extends Service {
     LocationManager my_manager;
     LocationListener my_listener;
     double lat, longd;
-    String phone, status;
+    String phone;
     String url = Links.UPDATE_LOCATION;
 
     @SuppressLint("MissingPermission")
     @Override
     public void onCreate() {
         super.onCreate();
-        status = "true";
 
         my_listener = new LocationListener() {
             @Override
@@ -90,8 +89,7 @@ public class LocationTracer extends Service {
         {
             my_manager.removeUpdates(my_listener);
         }
-        status = "false";
-        updateLocation(0,0);
+        updateLocation(0.0,0.0);
     }
 
     @Override
