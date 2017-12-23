@@ -31,7 +31,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
+  `fName` varchar(50) NOT NULL,
+  `lName` varchar(50) NOT NULL,
+  `gender` varchar(1) NOT NULL,
+  `dob` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `mobileNumber` varchar(11) NOT NULL,
+  `email` varchar(32) ,
+  `postcode` int(4) NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -39,8 +46,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
-(1, 'mirza', '$2y$10$YAXL26GztqeQATh.Wm8FI.fkJxSoD19xISbg0kjrGgdn5pym3s03W', '2017-12-16 01:33:46');
+INSERT INTO `users` (`id`, `username`, `fName`, `lName`, `gender`, `dob`, `password`, `mobileNumber`, `email`, `postcode`, `created_at`) VALUES
+(1, 'mirza', 'belal', 'ahmed', 'm', '12/17/1991', '$2y$10$YAXL26GztqeQATh.Wm8FI.fkJxSoD19xISbg0kjrGgdn5pym3s03W', '01923755372', 'email@hababa.com', 1000, '2017-12-16 01:33:46');
 
 --
 -- Indexes for dumped tables
