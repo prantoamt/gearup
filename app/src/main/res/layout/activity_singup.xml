@@ -91,7 +91,9 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:textColor="#fff"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:drawablePadding="12dp"
+            android:drawableLeft="@mipmap/ic_lock_outline_black_24dp"/>
     </android.support.design.widget.TextInputLayout>
 
 

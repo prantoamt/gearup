@@ -4,10 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,8 @@ public class HomeFragment extends Fragment {
 
     TextView welcome;
     Button online, ofline;
+    ImageView indicator;
+    boolean is_online = false;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -32,6 +36,7 @@ public class HomeFragment extends Fragment {
         welcome = (TextView) view.findViewById(R.id.welcome);
         online = (Button) view.findViewById(R.id.online);
         ofline = (Button) view.findViewById(R.id.ofline);
+        indicator = (ImageView) view.findViewById(R.id.indicator);
         welcome.setText("Welcome " + ((HomeActivity)getActivity()).mechanic.getName() +
                 "\nYou are now on the Home page of Gear Up Mechanic. " +
                 "To start getting job requests from clients, press the Online " +
@@ -42,6 +47,11 @@ public class HomeFragment extends Fragment {
                 ((HomeActivity)getActivity()).goOnline();
                 online.setClickable(false);
                 ofline.setClickable(true);
+                if(is_online == false)
+                {
+                    indicator.setImageResource(R.drawable.icon_online);
+                    is_online = true;
+                }
             }
         });
 
@@ -51,6 +61,11 @@ public class HomeFragment extends Fragment {
                 ((HomeActivity)getActivity()).goOfline();
                 ofline.setClickable(false);
                 online.setClickable(true);
+                if(is_online == true)
+                {
+                    indicator.setImageResource(R.drawable.icon_offline);
+                    is_online = false;
+                }
             }
         });
 

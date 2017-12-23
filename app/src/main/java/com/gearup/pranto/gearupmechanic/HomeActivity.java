@@ -194,6 +194,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if(item.getItemId() == R.id.nav_logout)
         {
             user_session.logOut();
+            goOfline();
             finish();
         }
 

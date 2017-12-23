@@ -5,6 +5,13 @@
     tools:context="com.gearup.pranto.gearupmechanic.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="20dp"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,7 +57,7 @@
                 android:drawablePadding="5dp"
                 android:drawableLeft="@mipmap/ic_location_off_black_24dp"
                 android:background="@drawable/signup_button"
-                android:text="Ofline"
+                android:text="Offline"
                 android:textSize="15dp"
                 android:textAllCaps="true"/>
         </LinearLayout>

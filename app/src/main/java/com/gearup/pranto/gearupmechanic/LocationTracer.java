@@ -35,20 +35,22 @@ public class LocationTracer extends Service {
 
     LocationManager my_manager;
     LocationListener my_listener;
-    String phone;
-    String url = "http://192.168.0.118/registerlocation.php";
+    double lat, longd;
+    String phone, status;
+    String url = Links.UPDATE_LOCATION;
 
     @SuppressLint("MissingPermission")
     @Override
     public void onCreate() {
         super.onCreate();
+        status = "true";
 
         my_listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                double lat = location.getLatitude();
-                double longd = location.getLongitude();
-                updateLocation(lat,longd);
+                lat = location.getLatitude();
+                longd = location.getLongitude();
+                updateLocation(lat,longd, status);
 
             }
 
@@ -88,6 +90,8 @@ public class LocationTracer extends Service {
         {
             my_manager.removeUpdates(my_listener);
         }
+        status = "false";
+        updateLocation(lat,longd,status);
     }
 
     @Override
@@ -98,11 +102,11 @@ public class LocationTracer extends Service {
     }
 
 
-    private void updateLocation(double lat, final double lon)
+    private void updateLocation(double lat, double lon, String stat)
     {
         final String latt = Double.toString(lat);
         final String lonn = Double.toString(lon);
-
+        final String status = stat;
         StringRequest rq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -123,6 +127,7 @@ public class LocationTracer extends Service {
                 parr.put("phone", phone);
                 parr.put("lat", latt);
                 parr.put("lon",lonn);
+                parr.put("status", status);
                 return parr;
             }
         };
