@@ -20,6 +20,18 @@ import android.view.MenuItem;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     MyMechanic mechanic;
@@ -27,18 +39,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle mtoggle;
     SectionsStatePagerAdapter adapter;
     ViewPager vp;
+    UserSessionManager user_session;
+    String name= "no name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        getContent();
+        init();
+        //getContent();
     }
 
     public void getContent()
     {
-        Bundle b = getIntent().getExtras();
-        mechanic = (MyMechanic) b.getSerializable("mechanic");
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         vp = (ViewPager) findViewById(R.id.viewpager);
         mtoggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
@@ -51,13 +64,38 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void init()
+    {
+        user_session = new UserSessionManager(getApplicationContext());
+        if(user_session.cheackLogIn())
+        {
+            finish();
+        }
+            mechanic = new MyMechanic();
+            HashMap<String, String> user = user_session.getUserDetails();
+            String name = user.get(UserSessionManager.KEY_NAME);
+            String email = user.get(UserSessionManager.KEY_EMAIL);
+            String service = user.get(UserSessionManager.KEY_SERVICE);
+            String rating = user.get(UserSessionManager.KEY_RATING);
+            String phone_no = user.get(UserSessionManager.KEY_PHONE);
+            String password = user.get(UserSessionManager.PASS);
+            mechanic.setName(name);
+            mechanic.setPhone(phone_no);
+            mechanic.setEmail(email);
+            mechanic.setPassword(password);
+            mechanic.setService(service);
+            mechanic.setRating(rating);
+            getContent();
+
+    }
+
     private void setupPager(ViewPager viewPager)
     {
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
-        Fragment f = new HomeFragment();
+        Fragment f1 = new HomeFragment();
         Fragment f2 = new MyAccountFragment();
         Fragment f3 = new ChangePasswordFragment();
-        adapter.addFragment(f, "Home fragment");
+        adapter.addFragment(f1, "Home fragment");
         adapter.addFragment(f2, "My account fragment");
         adapter.addFragment(f3, "Change password fragment");
         viewPager.setAdapter(adapter);
@@ -141,10 +179,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         if(item.getItemId() == R.id.nav_logout)
         {
-
+            user_session.logOut();
+            finish();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return false;
+    }
+
+    private void makeText(String text)
+    {
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 }

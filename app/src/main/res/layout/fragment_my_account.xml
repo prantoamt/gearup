@@ -15,7 +15,7 @@
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/grear_up_logo"/>
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -47,7 +47,9 @@
         <RatingBar
             android:id="@+id/rating"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:isIndicator="true"/>
 
     </LinearLayout>
 </FrameLayout>
