@@ -1,5 +1,5 @@
 <?php
-$db_name = "gearupDb";
+$db_name = "GearUp";
 $mysql_username = "root";
 $mysql_password = "";
 $server_name = "localhost";

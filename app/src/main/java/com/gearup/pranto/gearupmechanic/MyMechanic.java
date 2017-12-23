@@ -13,20 +13,21 @@ public class MyMechanic implements Serializable{
     String email;
     String phone;
     String service;
-    String rating;
+    String address;
 
     public MyMechanic()
     {
 
     }
 
-    public MyMechanic( String name, String password,String email, String phone, String category)
+    public MyMechanic( String name, String password,String email, String phone, String category, String add)
     {
         this.name = name;
         this.password = password;
         this.email = email;
         this.phone = phone;
         this.service = category;
+        this.address = add;
     }
 
     public String getName() {
@@ -69,12 +70,12 @@ public class MyMechanic implements Serializable{
         this.service = category;
     }
 
-    public String getRating() {
-        return rating;
+    public String getAddress() {
+        return address;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setAddress(String add) {
+        this.address = add;
     }
 
 }

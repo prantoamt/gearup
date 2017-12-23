@@ -50,7 +50,7 @@ public class LocationTracer extends Service {
             public void onLocationChanged(Location location) {
                 lat = location.getLatitude();
                 longd = location.getLongitude();
-                updateLocation(lat,longd, status);
+                updateLocation(lat,longd);
 
             }
 
@@ -91,7 +91,7 @@ public class LocationTracer extends Service {
             my_manager.removeUpdates(my_listener);
         }
         status = "false";
-        updateLocation(lat,longd,status);
+        updateLocation(0,0);
     }
 
     @Override
@@ -102,11 +102,10 @@ public class LocationTracer extends Service {
     }
 
 
-    private void updateLocation(double lat, double lon, String stat)
+    private void updateLocation(double lat, double lon)
     {
         final String latt = Double.toString(lat);
         final String lonn = Double.toString(lon);
-        final String status = stat;
         StringRequest rq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -127,7 +126,6 @@ public class LocationTracer extends Service {
                 parr.put("phone", phone);
                 parr.put("lat", latt);
                 parr.put("lon",lonn);
-                parr.put("status", status);
                 return parr;
             }
         };

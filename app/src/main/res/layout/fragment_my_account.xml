@@ -44,12 +44,13 @@
             android:text="Service"
             android:padding="5dp"
             android:textSize="15dp"/>
-        <RatingBar
-            android:id="@+id/rating"
+        <TextView
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            android:isIndicator="true"/>
+            android:text="Address:"
+            android:padding="5dp"
+            android:textSize="15dp"/>
 
     </LinearLayout>
 </FrameLayout>

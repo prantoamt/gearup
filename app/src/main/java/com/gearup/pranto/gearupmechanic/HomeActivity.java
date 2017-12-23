@@ -44,7 +44,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     ViewPager vp;
     UserSessionManager user_session;
     Intent share_intent;
-    String share_body= "Thanks for sharing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,15 +79,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             String name = user.get(UserSessionManager.KEY_NAME);
             String email = user.get(UserSessionManager.KEY_EMAIL);
             String service = user.get(UserSessionManager.KEY_SERVICE);
-            String rating = user.get(UserSessionManager.KEY_RATING);
             String phone_no = user.get(UserSessionManager.KEY_PHONE);
             String password = user.get(UserSessionManager.PASS);
+            String address = user.get(UserSessionManager.KEY_ADDRESS);
             mechanic.setName(name);
             mechanic.setPhone(phone_no);
             mechanic.setEmail(email);
             mechanic.setPassword(password);
             mechanic.setService(service);
-            mechanic.setRating(rating);
+            mechanic.setAddress(address);
             getContent();
 
     }

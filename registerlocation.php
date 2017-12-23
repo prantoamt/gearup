@@ -4,9 +4,8 @@ require "con.php";
 $phone_no = $_POST['phone'];
 $lat = $_POST['lat'];
 $lon = $_POST['lon'];
-$status = $_POST['status'];
 
-$sql_query = "UPDATE mechanic_location SET m_lat = '$lat', m_lon = '$lon', is_active = '$status' WHERE m_phone = '$phone_no'";
+$sql_query = "UPDATE currentLoc SET lat = '$lat', long = '$lon',  WHERE phoneNumber = '$phone_no'";
 
 $result = mysqli_query($conn, $sql_query);
 

@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
                 ((HomeActivity)getActivity()).goOfline();
                 ofline.setClickable(false);
                 online.setClickable(true);
-                if(is_online == true)
+                if(is_online)
                 {
                     indicator.setImageResource(R.drawable.icon_offline);
                     is_online = false;

@@ -28,13 +28,13 @@ import java.util.Map;
 
 public class SingupActivity extends AppCompatActivity {
 
-    EditText name, pass, email, phone;
+    EditText name, pass, email, phone, address;
     String service;
     Button sign_up;
     RadioGroup rgrp;
     RadioButton rbtn;
     ProgressDialog progress_dialog;
-    TextInputLayout t_name, t_password, t_email, t_phone;
+    TextInputLayout t_name, t_password, t_email, t_phone, t_address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +50,14 @@ public class SingupActivity extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.password);
         email = (EditText) findViewById(R.id.email);
         phone = (EditText) findViewById(R.id.phone);
+        address = (EditText) findViewById(R.id.address);
         sign_up = (Button) findViewById(R.id.sign_up);
         rgrp = (RadioGroup) findViewById(R.id.rdgroup);
         t_name = (TextInputLayout) findViewById(R.id.textname);
         t_password = (TextInputLayout) findViewById(R.id.textpassword);
         t_email = (TextInputLayout) findViewById(R.id.textemail);
         t_phone = (TextInputLayout) findViewById(R.id.textphone);
+        t_address = (TextInputLayout) findViewById(R.id.textaddress);
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,8 +75,10 @@ public class SingupActivity extends AppCompatActivity {
         final String my_email = email.getText().toString();
         final String my_phone = phone.getText().toString();
         final String my_ser = service.toString();
+        final String my_add = address.getText().toString();
         String url = Links.SIGNUP_URL;
-        if (checkName(my_name) && checkPassword(my_pass) && checkEmail(my_email) && checkPhone(my_phone))
+
+        if (checkAddress(my_add) && checkName(my_name) && checkPassword(my_pass) && checkEmail(my_email) && checkPhone(my_phone))
         {
             StringRequest rq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
@@ -106,6 +110,7 @@ public class SingupActivity extends AppCompatActivity {
                     parr.put("email", my_email);
                     parr.put("phone", my_phone);
                     parr.put("service", my_ser);
+                    parr.put("address", my_add);
                     return parr;
                 }
             };
@@ -216,6 +221,24 @@ public class SingupActivity extends AppCompatActivity {
                valid = true;
            }
                        }
+
+        return valid;
+    }
+
+    public boolean checkAddress(String add)
+    {
+        boolean valid = false;
+        if(add.isEmpty())
+        {
+            dismissPD();
+            t_address.setError("Invalid Address");
+            valid = false;
+        }
+        else
+        {
+            t_address.setErrorEnabled(false);
+            valid = true;
+        }
 
         return valid;
     }

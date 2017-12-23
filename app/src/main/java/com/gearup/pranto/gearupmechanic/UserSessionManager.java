@@ -23,8 +23,8 @@ public class UserSessionManager {
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_SERVICE = "service";
-    public static final String KEY_RATING = "rating";
     public static final String PASS = "pass";
+    public static final String KEY_ADDRESS = "address";
 
     UserSessionManager (Context context)
     {
@@ -33,7 +33,7 @@ public class UserSessionManager {
         editor = pref.edit();
     }
 
-    public void createUserSession(String name, String phone, String pass, String email, String service, String rating)
+    public void createUserSession(String name, String phone, String pass, String email, String service, String address)
     {
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(KEY_PHONE, phone);
@@ -41,7 +41,7 @@ public class UserSessionManager {
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_SERVICE, service);
-        editor.putString(KEY_RATING, rating);
+        editor.putString(KEY_ADDRESS, address);
         editor.commit();
     }
 
@@ -76,7 +76,7 @@ public class UserSessionManager {
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
         user.put(KEY_SERVICE, pref.getString(KEY_SERVICE, null));
-        user.put(KEY_RATING, pref.getString(KEY_RATING, null));
+        user.put(KEY_ADDRESS, pref.getString(KEY_ADDRESS, null));
         return user;
     }
 

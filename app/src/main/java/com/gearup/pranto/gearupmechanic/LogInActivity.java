@@ -85,12 +85,13 @@ public class LogInActivity extends AppCompatActivity {
                         {
                             object = array.getJSONObject(0);
 
-                            String name = object.getString("m_full_name");
-                            String password = object.getString("m_pass");
-                            String email = object.getString("m_email");
-                            String phone = object.getString("m_phone");
-                            String service = object.getString("m_service");
-                            session.createUserSession(name, phone, pass, email, service, "4");
+                            String name = object.getString("fullName");
+                            String password = object.getString("password");
+                            String email = object.getString("email");
+                            String phone = object.getString("phoneNumber");
+                            String service = object.getString("sType");
+                            String Address = object.getString("Address");
+                            session.createUserSession(name, phone, password, email, service, Address);
                             Intent i = new Intent(getApplicationContext(), HomeActivity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 
 public class MyAccountFragment extends Fragment {
 
-    TextView name, email, phone, service;
+    TextView name, email, phone, service, address;
     public MyAccountFragment() {
         // Required empty public constructor
     }
@@ -28,13 +29,12 @@ public class MyAccountFragment extends Fragment {
         email = view.findViewById(R.id.email);
         phone = view.findViewById(R.id.phone);
         service = view.findViewById(R.id.service);
-        RatingBar ratingBar = view.findViewById(R.id.rating);
-
+        address = (TextView) view.findViewById(R.id.address);
         name.setText("Name: " + ((HomeActivity)getActivity()).mechanic.getName());
         email.setText("Email: " + ((HomeActivity)getActivity()).mechanic.email);
         phone.setText("Phone: " + ((HomeActivity)getActivity()).mechanic.getPhone());
         service.setText("Service: " + ((HomeActivity)getActivity()).mechanic.getService());
-        ratingBar.setRating(3);
+        address.setText("Address: " + ((HomeActivity)getActivity()).mechanic.getAddress());
 
         return view;
     }

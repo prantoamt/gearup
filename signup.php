@@ -2,13 +2,14 @@
 require "con.php";
 
 $name = $_POST['name'];
-$password =  $_POST['password'];
+$password = $_POST['password'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 $service = $_POST['service'];
+$address = $_POST['address'];
 
 
-$sql_query = "INSERT INTO mechanic_table (m_phone, m_full_name, m_pass, m_email, m_service) VALUES ('$phone','$name','$password','$email','$service')";
+$sql_query = "INSERT INTO main (fullName, password, phoneNumber, email, sType, Address) VALUES ('$name','$password','$phone','$email','$service','$address')";
 
 $result = mysqli_query($conn, $sql_query);
 if ($result) 
