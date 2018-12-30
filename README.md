@@ -10,7 +10,7 @@
 * [  CREATE TABLE `mechanic_rating` ( `m_phone` VARCHAR(11) NOT NULL ,  `c_phone` VARCHAR(11) NOT NULL ,  `m_rating` VARCHAR(10) NOT NULL, FOREIGN KEY (m_phone) REFERENCES mechanic_table(m_phone)) ENGINE = InnoDB;  ]
 
 
-### Why this project?. ###
+### Why this project? ###
 
   This app gathers all the information of evey kind of mechanics in our city. The mechanics needs to download the app and turn on the job requesting
   option. Customers will get the status of mechanics if he/she is accepting job request or not. Customer will search for a mechanic near by his location when needed and send him 
@@ -22,14 +22,3 @@
 * Open your terminal/git bash inside the folder
 * Type `git clone https://prantoamt@bitbucket.org/prantoamt/gearup.git`
 * Open the project in Android Studio
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
