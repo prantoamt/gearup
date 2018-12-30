@@ -1,6 +1,6 @@
-# README #
+# Gear-Up #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+#### An Android app to find mechanics near by your location ####
 
 ## Test the android app: ##
 * Create a database named gearupDb
@@ -10,20 +10,18 @@ This README would normally document whatever steps are necessary to get your app
 * [  CREATE TABLE `mechanic_rating` ( `m_phone` VARCHAR(11) NOT NULL ,  `c_phone` VARCHAR(11) NOT NULL ,  `m_rating` VARCHAR(10) NOT NULL, FOREIGN KEY (m_phone) REFERENCES mechanic_table(m_phone)) ENGINE = InnoDB;  ]
 
 
-### What is this repository for? ###
+### Why this project?. ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+  This app gathers all the information of evey kind of mechanics in our city. The mechanics needs to download the app and turn on the job requesting
+  option. Customers will get the status of mechanics if he/she is accepting job request or not. Customer will search for a mechanic near by his location when needed and send him 
+  request. The mechanics will be able to accept the job request and communicate with customers. 
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Create a new folder
+* Open your terminal/git bash inside the folder
+* Type `git clone https://prantoamt@bitbucket.org/prantoamt/gearup.git`
+* Open the project in Android Studio
 
 ### Contribution guidelines ###
 
